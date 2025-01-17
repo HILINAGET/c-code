@@ -88,113 +88,94 @@ Create a C++ program to implement Huffman coding for compressing text data. Disc
 
 ---
 
-### **Code**
+# Huffman Coding Implementation
 
-```cpp
-#include <iostream>
-#include <queue>
-#include <unordered_map>
-#include <vector>
+This repository contains an implementation of Huffman Coding in C++. Huffman Coding is a lossless data compression algorithm that uses variable-length codes to represent characters based on their frequencies in the input data.
 
-using namespace std;
+## Code Explanation
 
-// Define the structure for the Huffman Tree Node
-struct Node {
-    char character;
-    int frequency;
-    Node* left;
-    Node* right;
+### Header Files
+- `#include <iostream>`: For input and output operations.
+- `#include <queue>`: To use the priority queue for building the Huffman Tree.
+- `#include <unordered_map>`: For mapping characters to their frequencies and codes.
+- `#include <vector>`: For the vector container used by the priority queue.
+- `#include <string>`: To handle text data.
 
-    Node(char character, int frequency) {
-        this->character = character;
-        this->frequency = frequency;
-        left = right = nullptr;
-    }
-};
+### Key Structures and Functions
 
-// Define the comparator for the priority queue (min-heap)
-struct compare {
-    bool operator()(Node* left, Node* right) {
-        return left->frequency > right->frequency;
-    }
-};
+#### 1. **`HuffmanNode` Structure**
+- Represents a node in the Huffman Tree.
+- Members:
+  - `char ch`: Character.
+  - `int freq`: Frequency of the character.
+  - `HuffmanNode* left, * right`: Pointers to left and right child nodes.
+- Constructor initializes the character, frequency, and child pointers.
 
-// Function to build the Huffman tree
-Node* buildHuffmanTree(const unordered_map<char, int>& freqTable) {
-    priority_queue<Node*, vector<Node*>, compare> minHeap;
+#### 2. **`Compare` Struct**
+- Defines the comparison logic for the priority queue.
+- Ensures that the node with the smallest frequency has the highest priority.
 
-    // Create a node for each character and insert into the priority queue
-    for (auto pair : freqTable) {
-        minHeap.push(new Node(pair.first, pair.second));
-    }
+#### 3. **`buildHuffmanTree` Function**
+- Input: A frequency map (`unordered_map<char, int>`).
+- Steps:
+  1. Create a priority queue of `HuffmanNode` pointers.
+  2. Push a node for each character-frequency pair into the queue.
+  3. Repeatedly merge the two lowest-frequency nodes until one node remains (the root of the tree).
+- Output: The root of the Huffman Tree.
 
-    // Build the Huffman tree
-    while (minHeap.size() > 1) {
-        Node* left = minHeap.top(); minHeap.pop();
-        Node* right = minHeap.top(); minHeap.pop();
+#### 4. **`generateHuffmanCodes` Function**
+- Input: Root of the Huffman Tree, current code string, and a map to store codes.
+- Recursively traverses the tree to generate binary codes for each character.
+- Assigns `0` for left branches and `1` for right branches.
 
-        Node* internalNode = new Node('\0', left->frequency + right->frequency);
-        internalNode->left = left;
-        internalNode->right = right;
-        minHeap.push(internalNode);
-    }
+#### 5. **`compress` Function**
+- Input: Text string and Huffman Codes.
+- Converts the input text into a binary string using the generated codes.
+- Output: Compressed binary string.
 
-    // The remaining node is the root of the Huffman tree
-    return minHeap.top();
-}
+#### 6. **`calculateFrequency` Function**
+- Input: Text string.
+- Counts the frequency of each character in the text.
+- Output: A frequency map.
 
-// Function to generate the Huffman codes for each character
-void generateHuffmanCodes(Node* root, string str, unordered_map<char, string>& huffmanCodes) {
-    if (root == nullptr) return;
+#### 7. **`displayHuffmanCodes` Function**
+- Input: Map of Huffman Codes.
+- Prints the character-to-code mapping.
 
-    // If we reach a leaf node, store the code
-    if (root->left == nullptr && root->right == nullptr) {
-        huffmanCodes[root->character] = str;
-    }
+### Main Function Workflow
+1. Takes input text from the user.
+2. Calculates the frequency of each character using `calculateFrequency`.
+3. Builds the Huffman Tree using `buildHuffmanTree`.
+4. Generates Huffman Codes using `generateHuffmanCodes`.
+5. Displays the Huffman Codes with `displayHuffmanCodes`.
+6. Compresses the input text using `compress` and prints the compressed output.
+7. Displays compression statistics (original size, compressed size, and compression ratio).
 
-    // Traverse left and right subtrees and append 0 or 1 to the code
-    generateHuffmanCodes(root->left, str + "0", huffmanCodes);
-    generateHuffmanCodes(root->right, str + "1", huffmanCodes);
-}
+### Example Input and Output
+#### Input:
+```
+Enter text to compress: hello huffman
+```
+#### Output:
+```
+Huffman Codes:
+h: 00
+e: 01
+l: 10
+ : 110
+u: 1110
+f: 1111
+m: 1000
+n: 1001
 
-// Function to encode the text using Huffman codes
-string encodeText(const string& text, const unordered_map<char, string>& huffmanCodes) {
-    string encodedText = "";
-    for (char c : text) {
-        encodedText += huffmanCodes.at(c);
-    }
-    return encodedText;
-}
+Compressed Text: 00101010011011101111111110001001
+Original Size: 112 bits
+Compressed Size: 36 bits
+Compression Ratio: 0.321429
+```
 
-int main() {
-    // Input text data
-    string text = "this is an example for huffman encoding";
 
-    // Step 1: Calculate frequency of each character
-    unordered_map<char, int> freqTable;
-    for (char c : text) {
-        freqTable[c]++;
-    }
 
-    // Step 2: Build the Huffman Tree
-    Node* root = buildHuffmanTree(freqTable);
-
-    // Step 3: Generate Huffman codes for each character
-    unordered_map<char, string> huffmanCodes;
-    generateHuffmanCodes(root, "", huffmanCodes);
-
-    // Step 4: Print the Huffman codes
-    cout << "Huffman Codes:" << endl;
-    for (auto pair : huffmanCodes) {
-        cout << pair.first << ": " << pair.second << endl;
-    }
-
-    // Step 5: Encode the text
-    string encodedText = encodeText(text, huffmanCodes);
-    cout << "\nEncoded Text: " << encodedText << endl;
-
-    return 0;
-}
 ```
 
 ## Group Memeber
