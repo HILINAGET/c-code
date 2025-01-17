@@ -133,6 +133,7 @@ int main() {
 
     // Calculate frequency of each character
     unordered_map<char, int> freqMap = calculateFrequency(text);
+    HuffmanNode* root = buildHuffmanTree(freqMap);
 
 
     return 0;
