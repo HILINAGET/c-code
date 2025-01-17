@@ -1,4 +1,28 @@
 # Huffman Coding for Data Compression
+# Repository Setup Guide
+
+
+## Prerequisites
+
+Before starting, ensure you have the following:
+- A Windows, Linux, or macOS system.
+- Administrator privileges to install software.
+
+---
+
+## Step 1: Install Code::Blocks
+
+### Windows
+1. Download the Code::Blocks installer with the MinGW compiler:
+   - [Download Link](https://www.codeblocks.org/downloads/)
+   - Choose the version labeled **"codeblocks-XX.Xmingw-setup.exe"**.
+
+
+## Step 2: Clone the Repository
+
+1. Open a terminal (or Command Prompt on Windows).
+2. Clone this repository:
+   
 
 ## Overview
 
@@ -171,3 +195,4 @@ int main() {
 
     return 0;
 }
+
