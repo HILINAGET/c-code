@@ -6,14 +6,6 @@
 
 using namespace std;
 
-#include <iostream>
-#include <queue>
-#include <unordered_map>
-#include <vector>
-#include <string>
-
-using namespace std;
-
 // A Tree Node for Huffman coding
 struct HuffmanNode {
     char ch;
