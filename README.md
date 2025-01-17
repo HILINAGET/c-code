@@ -195,4 +195,13 @@ int main() {
 
     return 0;
 }
+---
 
+## Group Memeber
+| #  | NAME                   | ID            |
+|----|------------------------|---------------|
+| 1  | Hilina Getahun          | NSR/1282/13   |
+| 2  | Tsigereda Ojige         | NSR/2371/13   |
+| 3  | Oli Chimdessa           | NSR/1928/13   |
+| 4  | Cheramilak Mengstu      | NSR/686/13    |
+| 5  | Addisu Belane           | NSR/163/13    |
