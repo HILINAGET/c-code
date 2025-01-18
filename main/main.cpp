@@ -7,7 +7,8 @@
 using namespace std;
 
 // A Tree Node for Huffman coding
-struct HuffmanNode {
+class HuffmanNode {
+public:
     char ch;
     int freq;
     HuffmanNode* left;
@@ -15,7 +16,6 @@ struct HuffmanNode {
 
     HuffmanNode(char c, int f) : ch(c), freq(f), left(nullptr), right(nullptr) {}
 };
-
 // Comparison object for priority queue
 struct Compare {
     bool operator()(HuffmanNode* a, HuffmanNode* b) {
