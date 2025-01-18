@@ -111,7 +111,7 @@ This repository contains an implementation of Huffman Coding in C++. Huffman Cod
 
 #### 1. **`HuffmanNode` Structure**
 - The HuffmanNode structure typically consists of value, frequency, left child and right child. by combining these attributes within      the HuffmanNode structure, we can create an effective representation of nodes in the Huffman tre.
-- Allowing for optimized data compression and decompression operations..
+- Organizing and managing the characters and frequencies in the tree.
 - Members:
   - `char ch`: Character.
   - `int freq`: Frequency of the character.
