@@ -134,7 +134,24 @@ int main() {
     // Calculate frequency of each character
     unordered_map<char, int> freqMap = calculateFrequency(text);
     HuffmanNode* root = buildHuffmanTree(freqMap);
+    unordered_map<char, string> huffmanCodes;
+    generateHuffmanCodes(root, "", huffmanCodes);
 
+    // Display the Huffman codes
+    displayHuffmanCodes(huffmanCodes);
+
+    // Compress the text
+    string compressed = compress(text, huffmanCodes);
+    cout << "\nCompressed Text: " << compressed << endl;
+
+    // Display compression efficiency
+    int originalBits = text.size() * 8;
+    int compressedBits = compressed.size();
+    cout << "Original Size: " << originalBits << " bits\n";
+    cout << "Compressed Size: " << compressedBits << " bits\n";
+    cout << "Compression Ratio: " << (double)compressedBits / originalBits << endl;
 
     return 0;
 }
+
+
