@@ -1,4 +1,10 @@
 # Huffman Coding for Data Compression
+
+# Screenshots
+
+![](https://github.com/HILINAGET/c-code/blob/main/image/image.png?raw=true)
+
+
 # Repository Setup Guide
 
 
@@ -22,7 +28,7 @@ Before starting, ensure you have the following:
 
 1. Open a terminal (or Command Prompt on Windows).
 2. Clone this repository:
-   
+
 
 ## Overview
 
