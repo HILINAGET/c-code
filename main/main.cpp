@@ -90,14 +90,15 @@ void displayHuffmanCodes(const unordered_map<char, string>& huffmanCodes) {
         cout << pair.first << ": " << pair.second << endl;
     }
 }
-if (text.empty()) {
-        cout << "Input text is empty. Exiting...\n";
-        return 0;
-    }
+
 int main() {
     string text;
     cout << "Enter text to compress: ";
     getline(cin, text);
+    if (text.empty()) {
+        cout << "Input text is empty. Exiting...\n";
+        return 0;
+    }
 
     // Calculate frequency of each character
     unordered_map<char, int> freqMap = calculateFrequency(text);
@@ -114,7 +115,6 @@ int main() {
 
     // Compress the text
     string compressed = compress(text, huffmanCodes);
-    cleanupHuffmanTree(root);
     cout << "\nCompressed Text: " << compressed << endl;
 
     // Display compression efficiency
@@ -123,6 +123,7 @@ int main() {
     cout << "Original Size: " << originalBits << " bits\n";
     cout << "Compressed Size: " << compressedBits << " bits\n";
     cout << "Compression Ratio: " << (double)compressedBits / originalBits << endl;
-
+    cleanupHuffmanTree(root);
     return 0;
+    
 }
