@@ -77,7 +77,12 @@ unordered_map<char, int> calculateFrequency(const string& text) {
     }
     return freqMap;
 }
-
+void cleanupHuffmanTree(HuffmanNode* root) {
+    if (!root) return;
+    cleanupHuffmanTree(root->left);
+    cleanupHuffmanTree(root->right);
+    delete root;
+}
 // Function to display the Huffman codes
 void displayHuffmanCodes(const unordered_map<char, string>& huffmanCodes) {
     cout << "Huffman Codes:\n";
@@ -85,7 +90,10 @@ void displayHuffmanCodes(const unordered_map<char, string>& huffmanCodes) {
         cout << pair.first << ": " << pair.second << endl;
     }
 }
-
+if (text.empty()) {
+        cout << "Input text is empty. Exiting...\n";
+        return 0;
+    }
 int main() {
     string text;
     cout << "Enter text to compress: ";
@@ -106,6 +114,7 @@ int main() {
 
     // Compress the text
     string compressed = compress(text, huffmanCodes);
+    cleanupHuffmanTree(root);
     cout << "\nCompressed Text: " << compressed << endl;
 
     // Display compression efficiency
