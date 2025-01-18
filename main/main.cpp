@@ -8,6 +8,7 @@
 using namespace std;
 
 // A Tree Node for Huffman coding
+
 class HuffmanNode {
 public:
     char ch;
