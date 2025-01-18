@@ -28,6 +28,10 @@ Before starting, ensure you have the following:
 
 1. Open a terminal (or Command Prompt on Windows).
 2. Clone this repository:
+      git clone https://github.com/HILINAGET/c-code.git
+   
+3. Navigate into the project directory:
+      cd c-code
 
 
 ## Overview
