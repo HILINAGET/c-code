@@ -27,12 +27,34 @@ Before starting, ensure you have the following:
 ## Step 2: Clone the Repository
 
 1. Open a terminal (or Command Prompt on Windows).
+
+
+## Step 2: Clone the Repository
+
+1. Open a terminal (or Command Prompt on Windows).
 2. Clone this repository:
       git clone https://github.com/HILINAGET/c-code.git
    
 3. Navigate into the project directory:
       cd c-code
+   
 
+---
+
+## Step 3: Open the Project in Code::Blocks
+
+1. Launch Code::Blocks.
+2. Click on File > Open.
+3. Navigate to the cloned repository folder and select the main.cpp project file.
+
+---
+
+## Step 4: Build and Run the Project
+
+1. In Code::Blocks, click Build > Build and Run or press F9.
+2. If there are no errors, the project will compile and execute.
+
+---
 
 ## Overview
 
